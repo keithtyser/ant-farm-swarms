@@ -1,7 +1,9 @@
 FROM python:3.10-slim
 WORKDIR /app
+# copy ONLY the backend code
 COPY . .
-RUN pip install fastapi[all] redis asyncio uvicorn[standard]
+RUN pip install --upgrade pip && \
+    pip install fastapi[all] redis asyncio uvicorn[standard]
 EXPOSE 8000
 CMD ["uvicorn", "antfarm.web:app", "--host", "0.0.0.0", "--port", "8000"]
 
