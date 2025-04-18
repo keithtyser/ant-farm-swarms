@@ -3,4 +3,5 @@ WORKDIR /app
 COPY . .
 RUN pip install fastapi[all] redis asyncio
 EXPOSE 8000
-CMD ["python", "-m", antfarm.web"]
+CMD ["python", "-m", "antfarm.web"]
+
