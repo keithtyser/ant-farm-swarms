@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "antfarm"
+version = "0.1.0"
+description = "LLM swarm ant‑farm backend"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "redis>=4.6",
+  "python-socketio[asyncio_client]",
+]
+[project.optional-dependencies]
+dev = ["pytest", "httpx[async]"]
