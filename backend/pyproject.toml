@@ -13,4 +13,4 @@ dependencies = [
   "python-socketio[asyncio_client]",
 ]
 [project.optional-dependencies]
-dev = ["pytest", "httpx[async]"]
+dev = ["pytest", "pytest-cov", "build", "wheel","httpx[async]"]
