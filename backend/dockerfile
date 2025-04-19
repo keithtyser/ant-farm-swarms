@@ -1,9 +1,16 @@
+# backend/Dockerfile
 FROM python:3.10-slim
-WORKDIR /app
-# copy ONLY the backend code
-COPY . .
-RUN pip install --upgrade pip && \
-    pip install fastapi[all] redis asyncio uvicorn[standard]
-EXPOSE 8000
-CMD ["uvicorn", "antfarm.web:app", "--host", "0.0.0.0", "--port", "8000"]
 
+WORKDIR /app
+COPY . .
+
+# ── NEW: install missing dep ─────────────
+RUN pip install --upgrade pip && \
+    pip install \
+        python-socketio[asyncio_client] \
+        fastapi[all] redis asyncio uvicorn[standard]
+
+# exposed by uvicorn
+EXPOSE 8000
+
+CMD ["uvicorn", "antfarm.web:app", "--host", "0.0.0.0", "--port", "8000"]
