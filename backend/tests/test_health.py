@@ -1,9 +1,10 @@
-import asyncio
-from httpx import AsyncClient
+import pytest
 from antfarm.web import api as app   # FastAPI instance
+from fastapi.testclient import TestClient
 
+@pytest.mark.asyncio
 async def test_root_returns_ok():
-    async with AsyncClient(app=app, base_url="http://test") as ac:
-        r = await ac.get("/")
-    assert r.status_code == 200
-    assert r.json() == {"status": "ant farm running"}
+    client = TestClient(app)
+    resp = client.get("/")
+    assert resp.status_code == 200
+    assert resp.json() == {"status": "ant farm running"}
